@@ -56,8 +56,9 @@ function ExportOptions({ targetRef }) {
 		a.click();
 	};
 	return (
-		<div className='self-center'>
+		<div>
 			<DropdownMenu>
+				<label className='block mb-2 text-xs font-medium text-neutral-400'>Export</label>
 				<DropdownMenuTrigger asChild>
 					<Button>
 						<Share2Icon className='mr-2' />

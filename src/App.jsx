@@ -8,6 +8,7 @@ import ThemeSelect from './components/controls/ThemeSelect';
 import ExportOptions from './components/controls/ExportOptions';
 import LanguageSelect from './components/controls/LanguageSelect';
 import FontSelect from './components/controls/FontSelect';
+import FontSizeInput from './components/controls/FontSizeInput';
 
 function App() {
 	const theme = useCodeStore((state) => state.theme);
@@ -49,10 +50,11 @@ function App() {
 			</div>
 
 			<Card className='fixed px-8 py-6 mx-6 bottom-16 bg-neutral-900/90 backdrop-blur'>
-				<CardContent className='flex flex-wrap items-center gap-4 p-0'>
+				<CardContent className='flex flex-wrap items-center gap-6 p-0'>
 					<ThemeSelect />
 					<LanguageSelect />
 					<FontSelect />
+					<FontSizeInput />
 					<ExportOptions targetRef={editorRef} />
 				</CardContent>
 			</Card>
