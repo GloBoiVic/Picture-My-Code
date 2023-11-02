@@ -9,6 +9,7 @@ import ExportOptions from './components/controls/ExportOptions';
 import LanguageSelect from './components/controls/LanguageSelect';
 import FontSelect from './components/controls/FontSelect';
 import FontSizeInput from './components/controls/FontSizeInput';
+import PaddingSlider from './components/controls/PaddingSlider';
 
 function App() {
 	const theme = useCodeStore((state) => state.theme);
@@ -55,6 +56,7 @@ function App() {
 					<LanguageSelect />
 					<FontSelect />
 					<FontSizeInput />
+					<PaddingSlider />
 					<ExportOptions targetRef={editorRef} />
 				</CardContent>
 			</Card>
