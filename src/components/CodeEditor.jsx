@@ -29,7 +29,6 @@ function CodeEditor() {
 				'min-w-[400px] border-2 rounded-xl shadow-2xl',
 				store.darkMode ? 'bg-black/75 border-gray-600/40' : 'bg-white/75 border-gray-200/20'
 			)}
-			onClick={() => useCodeStore.setState({ darkMode: !store.darkMode })}
 		>
 			<header className='grid items-center grid-cols-6 gap-3 px-4 py-3'>
 				<div className='flex gap-1.5'>

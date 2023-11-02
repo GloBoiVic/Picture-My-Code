@@ -10,6 +10,8 @@ import LanguageSelect from './components/controls/LanguageSelect';
 import FontSelect from './components/controls/FontSelect';
 import FontSizeInput from './components/controls/FontSizeInput';
 import PaddingSlider from './components/controls/PaddingSlider';
+import BackgroundSwitch from './components/controls/BackgroundSwitch';
+import DarkModeSwitch from './components/controls/DarkModeSwitch';
 
 function App() {
 	const theme = useCodeStore((state) => state.theme);
@@ -57,6 +59,8 @@ function App() {
 					<FontSelect />
 					<FontSizeInput />
 					<PaddingSlider />
+					<BackgroundSwitch />
+					<DarkModeSwitch />
 					<ExportOptions targetRef={editorRef} />
 				</CardContent>
 			</Card>
