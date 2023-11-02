@@ -1,14 +1,14 @@
 import { themes } from '../../data/options';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { cn } from '../../lib/utils';
-import useStore from '../../store';
+import useCodeStore from '../../store';
 
 function ThemeSelect() {
-	const theme = useStore((state) => state.theme);
+	const theme = useCodeStore((state) => state.theme);
 	return (
 		<div>
-			<label className='block mb-2 text-xs font-medium text-neutral-400' />
-			<Select value={theme} onValueChange={(theme) => useStore.setState({ theme })}>
+			<label className='block mb-2 text-xs font-medium text-neutral-400'>Theme</label>
+			<Select value={theme} onValueChange={(theme) => useCodeStore.setState({ theme })}>
 				<SelectTrigger className='w-40'>
 					<SelectValue placeholder='Select Theme' />
 				</SelectTrigger>

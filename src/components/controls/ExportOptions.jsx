@@ -56,65 +56,67 @@ function ExportOptions({ targetRef }) {
 		a.click();
 	};
 	return (
-		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<Button>
-					<Share2Icon className='mr-2' />
-				</Button>
-			</DropdownMenuTrigger>
-			<DropdownMenuContent className='dark'>
-				<DropdownMenuItem
-					className='gap-2'
-					onClick={() =>
-						toast.promise(copyImage(), {
-							loading: 'Copying...',
-							success: 'Image copied to clipboard!',
-							error: 'Something went wrong!',
-						})
-					}
-				>
-					<ImageIcon />
-					Copy Image
-				</DropdownMenuItem>
-				<DropdownMenuItem
-					className='gap-2'
-					onClick={() => {
-						copyLink();
-						toast.success('Link copied to clipboard');
-					}}
-				>
-					<Link2Icon />
-					Copy Link
-				</DropdownMenuItem>
-				<DropdownMenuSeparator />
-				<DropdownMenuItem
-					className='gap-2'
-					onClick={() =>
-						toast.promise(saveImage(title, 'PNG'), {
-							loading: 'Exporting PNG image...',
-							success: 'Export successfully',
-							error: 'Something went wrong!',
-						})
-					}
-				>
-					<DownloadIcon />
-					Save as PNG
-				</DropdownMenuItem>
-				<DropdownMenuItem
-					className='gap-2'
-					onClick={() =>
-						toast.promise(saveImage(title, 'SVG'), {
-							loading: 'Exporting SVG image...',
-							success: 'Export successfully',
-							error: 'Something went wrong!',
-						})
-					}
-				>
-					<DownloadIcon />
-					Save as SVG
-				</DropdownMenuItem>
-			</DropdownMenuContent>
-		</DropdownMenu>
+		<div className='self-center'>
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
+					<Button>
+						<Share2Icon className='mr-2' />
+					</Button>
+				</DropdownMenuTrigger>
+				<DropdownMenuContent className='dark'>
+					<DropdownMenuItem
+						className='gap-2'
+						onClick={() =>
+							toast.promise(copyImage(), {
+								loading: 'Copying...',
+								success: 'Image copied to clipboard!',
+								error: 'Something went wrong!',
+							})
+						}
+					>
+						<ImageIcon />
+						Copy Image
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className='gap-2'
+						onClick={() => {
+							copyLink();
+							toast.success('Link copied to clipboard');
+						}}
+					>
+						<Link2Icon />
+						Copy Link
+					</DropdownMenuItem>
+					<DropdownMenuSeparator />
+					<DropdownMenuItem
+						className='gap-2'
+						onClick={() =>
+							toast.promise(saveImage(title, 'PNG'), {
+								loading: 'Exporting PNG image...',
+								success: 'Export successfully',
+								error: 'Something went wrong!',
+							})
+						}
+					>
+						<DownloadIcon />
+						Save as PNG
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className='gap-2'
+						onClick={() =>
+							toast.promise(saveImage(title, 'SVG'), {
+								loading: 'Exporting SVG image...',
+								success: 'Export successfully',
+								error: 'Something went wrong!',
+							})
+						}
+					>
+						<DownloadIcon />
+						Save as SVG
+					</DropdownMenuItem>
+				</DropdownMenuContent>
+			</DropdownMenu>
+		</div>
 	);
 }
 

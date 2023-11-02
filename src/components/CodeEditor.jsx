@@ -1,9 +1,9 @@
 import hljs from 'highlight.js';
 import Editor from 'react-simple-code-editor';
-import { cn } from './lib/utils';
-import { codeSnippets, fonts } from './data/options';
+import { cn } from '../lib/utils';
+import { codeSnippets, fonts } from '../data/options';
 
-import useCodeStore from './store';
+import useCodeStore from '../store';
 import { useEffect } from 'react';
 import flourite from 'flourite';
 

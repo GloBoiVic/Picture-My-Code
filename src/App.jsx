@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react';
-import CodeEditor from './CodeEditor';
+import CodeEditor from './components/CodeEditor';
 import { cn } from './lib/utils';
 import { fonts, themes } from './data/options';
 import useCodeStore from './store';
 import { Card, CardContent } from './components/ui/card';
 import ThemeSelect from './components/controls/ThemeSelect';
 import ExportOptions from './components/controls/ExportOptions';
+import LanguageSelect from './components/controls/LanguageSelect';
+import FontSelect from './components/controls/FontSelect';
 
 function App() {
 	const theme = useCodeStore((state) => state.theme);
@@ -24,7 +26,6 @@ function App() {
 		useCodeStore.setState({
 			...state,
 			code: state.code ? atob(state.code) : '',
-			// theme: state.theme ? state.theme : 'oceanic',
 			autoDetectLanguage: state.autoDetectLanguage === 'true',
 			darkMode: state.darkMode === 'true',
 			fontSize: Number(state.fontSize || 18),
@@ -48,10 +49,12 @@ function App() {
 			</div>
 
 			<Card className='fixed px-8 py-6 mx-6 bottom-16 bg-neutral-900/90 backdrop-blur'>
-				<CardContent className='flex flex-wrap gap-6 p-0'>
+				<CardContent className='flex flex-wrap items-center gap-4 p-0'>
 					<ThemeSelect />
+					<LanguageSelect />
+					<FontSelect />
+					<ExportOptions targetRef={editorRef} />
 				</CardContent>
-				<ExportOptions targetRef={editorRef} />
 			</Card>
 		</main>
 	);
