@@ -3,6 +3,8 @@ import CodeEditor from './CodeEditor';
 import { cn } from './lib/utils';
 import { fonts, themes } from './data/options';
 import useCodeStore from './store';
+import { Card, CardContent } from './components/ui/card';
+import ThemeSelect from './components/controls/ThemeSelect';
 
 function App() {
 	const theme = useCodeStore((state) => state.theme);
@@ -43,6 +45,13 @@ function App() {
 			>
 				<CodeEditor />
 			</div>
+
+			<Card className='fixed px-8 py-6 mx-6 bottom-16 bg-neutral-900/90 backdrop-blur'>
+				<CardContent className='flex flex-wrap gap-6 p-0'>
+					<ThemeSelect />
+				</CardContent>
+				{/* <ExportOptions targetRef={editorRef} /> */}
+			</Card>
 		</main>
 	);
 }
