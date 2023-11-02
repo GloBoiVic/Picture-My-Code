@@ -21,6 +21,7 @@ Inspired by Ray.so's code sharing app. This app boasts some additional features 
 
 ## Features
 
+- Using Zustand's persist state api, customizations are stored in local storage for quick code captures.
 - Dark and light mode themes.
 - Over 12 font styles, including popular monospace fonts.
 - Supports most major languages with automatic code detection and syntax highlighting.
@@ -42,8 +43,13 @@ Inspired by Ray.so's code sharing app. This app boasts some additional features 
 
 ## Limitations
 
-- Due to the nature of the project, this app is not mobile responsive. I will be refactoring it to possible make it responsive.
+- Due to the nature of the project, this app is not mobile responsive.
 - Code editor does not autocomplete or auto line break. Thus beware of pasting code lines longer than 80 characters or trying to write code manually. Will look into other alternatives than the react simple code editor (Monaco Editor).
+
+## Future Features
+
+- Editor responsiveness: Autocomplete, Auto line break
+- Mobile responsiveness
 
 ## Contact
 
