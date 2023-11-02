@@ -5,6 +5,7 @@ import { fonts, themes } from './data/options';
 import useCodeStore from './store';
 import { Card, CardContent } from './components/ui/card';
 import ThemeSelect from './components/controls/ThemeSelect';
+import ExportOptions from './components/controls/ExportOptions';
 
 function App() {
 	const theme = useCodeStore((state) => state.theme);
@@ -50,7 +51,7 @@ function App() {
 				<CardContent className='flex flex-wrap gap-6 p-0'>
 					<ThemeSelect />
 				</CardContent>
-				{/* <ExportOptions targetRef={editorRef} /> */}
+				<ExportOptions targetRef={editorRef} />
 			</Card>
 		</main>
 	);
