@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="./src/assets/react.svg" alt="Logo" width="80" height="80">
+	<img src="./src/assets/react.svg" href='#' alt="Logo" width="80" height="80">
   <h1 align="center">Picture My Code</h1>
 
   <div align="center">
@@ -15,7 +15,7 @@
 	</div>
 </div>
 
-![Flick Finder Screenshot](/public/projectScreenshot.png)
+![Picture My Code screenshot](/public/projectScreenshot.png)
 
 Inspired by Ray.so's code sharing app. This app boasts some additional features for devs to share code snippets.
 
