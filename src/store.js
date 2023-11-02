@@ -5,8 +5,8 @@ const useCodeStore = create(
 	persist(
 		() => ({
 			code: '',
-			title: 'Untitled',
-			theme: 'hyper',
+			title: 'Picture-My-Code',
+			theme: 'oceanic',
 			darkMode: true,
 			showBackground: true,
 			language: 'plaintext',
