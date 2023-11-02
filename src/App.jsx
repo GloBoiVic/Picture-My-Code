@@ -12,6 +12,7 @@ import FontSizeInput from './components/controls/FontSizeInput';
 import PaddingSlider from './components/controls/PaddingSlider';
 import BackgroundSwitch from './components/controls/BackgroundSwitch';
 import DarkModeSwitch from './components/controls/DarkModeSwitch';
+import { Resizable } from 're-resizable';
 
 function App() {
 	const theme = useCodeStore((state) => state.theme);
@@ -33,27 +34,30 @@ function App() {
 			autoDetectLanguage: state.autoDetectLanguage === 'true',
 			darkMode: state.darkMode === 'true',
 			fontSize: Number(state.fontSize || 18),
-			padding: Number(state.padding || 64),
+			padding: Number(state.padding || 30),
 		});
 	}, []);
 
 	return (
-		<main className='flex items-center justify-center min-h-screen text-white dark bg-neutral-950'>
+		<main className='flex items-center justify-center min-h-screen overflow-hidden text-white dark bg-neutral-950'>
 			<link rel='stylesheet' href={themes[theme].theme} crossOrigin='anonymous' />
 			<link rel='stylesheet' href={fonts[fontStyle].src} crossOrigin='anonymous' />
-			<div
-				className={cn(
-					'overflow-hidden mb-2 transition-all ease-out',
-					showBackground ? themes[theme].background : 'ring ring-neutral-900'
-				)}
-				style={{ padding }}
-				ref={editorRef}
-			>
-				<CodeEditor />
-			</div>
 
-			<Card className='fixed px-8 py-6 mx-6 bottom-16 bg-neutral-900/90 backdrop-blur'>
-				<CardContent className='flex flex-wrap items-center gap-6 p-0'>
+			<Resizable enable={{ left: true, right: true }} minWidth={padding * 2 + 400}>
+				<div
+					className={cn(
+						'overflow-hidden mb-2 transition-all ease-out',
+						showBackground ? themes[theme].background : 'ring ring-neutral-900'
+					)}
+					style={{ padding }}
+					ref={editorRef}
+				>
+					<CodeEditor />
+				</div>
+			</Resizable>
+
+			<Card className='fixed px-8 py-6 mx-6 bottom-10 bg-neutral-900/90 backdrop-blur'>
+				<CardContent className='flex flex-wrap gap-6 p-0'>
 					<ThemeSelect />
 					<LanguageSelect />
 					<FontSelect />
@@ -61,7 +65,10 @@ function App() {
 					<PaddingSlider />
 					<BackgroundSwitch />
 					<DarkModeSwitch />
-					<ExportOptions targetRef={editorRef} />
+					<div className='w-px bg-neutral-800' />
+					<div className='place-self-center'>
+						<ExportOptions targetRef={editorRef} />
+					</div>
 				</CardContent>
 			</Card>
 		</main>
