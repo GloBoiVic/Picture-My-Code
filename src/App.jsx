@@ -56,8 +56,8 @@ function App() {
 				</div>
 			</Resizable>
 
-			<Card className='fixed px-8 py-6 mx-6 bottom-10 bg-neutral-900/90 backdrop-blur'>
-				<CardContent className='flex flex-wrap gap-6 p-0'>
+			<Card className='fixed bottom-0 px-2 py-1 mx-6 sm:px-4 sm:py-6 sm:bottom-10 bg-neutral-900/90 backdrop-blur'>
+				<CardContent className='flex flex-wrap gap-2 p-0 sm:gap-4'>
 					<ThemeSelect />
 					<LanguageSelect />
 					<FontSelect />

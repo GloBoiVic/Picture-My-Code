@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { DownloadIcon, ImageIcon, Link2Icon, Share2Icon } from '@radix-ui/react-icons';
+import { toBlob, toPng, toSvg } from 'html-to-image';
+import toast from 'react-hot-toast';
 import useCodeStore from '../../store';
 import { Button } from '../ui/button';
 import {
@@ -9,52 +11,69 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import { toBlob, toPng, toSvg } from 'html-to-image';
-import toast from 'react-hot-toast';
 
 function ExportOptions({ targetRef }) {
 	const title = useCodeStore((state) => state.title);
 
 	const copyImage = async () => {
-		const imgBlob = await toBlob(targetRef.current, {
-			pixelRatio: 2,
-		});
-		const img = new ClipboardItem({ 'image/png': imgBlob });
-		navigator.clipboard.write([img]);
+		try {
+			const imgBlob = await toBlob(targetRef.current, {
+				pixelRatio: 2,
+			});
+			const img = new ClipboardItem({ 'image/png': imgBlob });
+			navigator.clipboard.write([img]);
+
+			toast.success('Image copied to clipboard!');
+		} catch (error) {
+			toast.error('Something went wrong!');
+		}
 	};
 
 	const copyLink = () => {
-		const state = useCodeStore.getState();
-		const queryParams = new URLSearchParams({
-			...state,
-			code: btoa(state.code),
-		}).toString();
-		navigator.clipboard.writeText(`${location.href}?${queryParams}`);
+		try {
+			const state = useCodeStore.getState();
+			const queryParams = new URLSearchParams({
+				...state,
+				code: btoa(state.code),
+			}).toString();
+			navigator.clipboard.writeText(`${location.href}?${queryParams}`);
+
+			toast.success('Link copied to clipboard!');
+		} catch (error) {
+			toast.error('Something went wrong!');
+		}
 	};
 
 	const saveImage = async (name, format) => {
-		let imgUrl, fileName;
+		try {
+			let imgUrl, fileName;
 
-		switch (format) {
-			case 'PNG':
-				imgUrl = await toPng(targetRef.current, { pixelRatio: 2 });
-				fileName = `${name}.png`;
-				break;
+			switch (format) {
+				case 'PNG':
+					imgUrl = await toPng(targetRef.current, { pixelRatio: 2 });
+					fileName = `${name}.png`;
+					break;
 
-			case 'SVG':
-				imgUrl = await toSvg(targetRef.current, { pixelRatio: 2 });
-				fileName = `${name}.svg`;
-				break;
+				case 'SVG':
+					imgUrl = await toSvg(targetRef.current, { pixelRatio: 2 });
+					fileName = `${name}.svg`;
+					break;
 
-			default:
-				return;
+				default:
+					return;
+			}
+
+			const a = document.createElement('a');
+			a.href = imgUrl;
+			a.download = fileName;
+			a.click();
+
+			toast.success('Exported successfully!');
+		} catch (error) {
+			toast.error('Something went wrong!');
 		}
-
-		const a = document.createElement('a');
-		a.href = imgUrl;
-		a.download = fileName;
-		a.click();
 	};
+
 	return (
 		<div>
 			<DropdownMenu>
@@ -65,53 +84,20 @@ function ExportOptions({ targetRef }) {
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent className='dark'>
-					<DropdownMenuItem
-						className='gap-2'
-						onClick={() =>
-							toast.promise(copyImage(), {
-								loading: 'Copying...',
-								success: 'Image copied to clipboard!',
-								error: 'Something went wrong!',
-							})
-						}
-					>
+					<DropdownMenuItem className='gap-2' onClick={copyImage}>
 						<ImageIcon />
 						Copy Image
 					</DropdownMenuItem>
-					<DropdownMenuItem
-						className='gap-2'
-						onClick={() => {
-							copyLink();
-							toast.success('Link copied to clipboard');
-						}}
-					>
+					<DropdownMenuItem className='gap-2' onClick={copyLink}>
 						<Link2Icon />
 						Copy Link
 					</DropdownMenuItem>
 					<DropdownMenuSeparator />
-					<DropdownMenuItem
-						className='gap-2'
-						onClick={() =>
-							toast.promise(saveImage(title, 'PNG'), {
-								loading: 'Exporting PNG image...',
-								success: 'Export successfully',
-								error: 'Something went wrong!',
-							})
-						}
-					>
+					<DropdownMenuItem className='gap-2' onClick={() => saveImage(title, 'PNG')}>
 						<DownloadIcon />
 						Save as PNG
 					</DropdownMenuItem>
-					<DropdownMenuItem
-						className='gap-2'
-						onClick={() =>
-							toast.promise(saveImage(title, 'SVG'), {
-								loading: 'Exporting SVG image...',
-								success: 'Export successfully',
-								error: 'Something went wrong!',
-							})
-						}
-					>
+					<DropdownMenuItem className='gap-2' onClick={() => saveImage(title, 'SVG')}>
 						<DownloadIcon />
 						Save as SVG
 					</DropdownMenuItem>
